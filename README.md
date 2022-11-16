@@ -6,5 +6,3 @@ A number can only appear once in each row, column and group (a group is a set of
 
 ## Languages:
 This project uses: HTML, CSS and JQuery.
-
-Testing that this worked
