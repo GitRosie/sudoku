@@ -1,1 +1,153 @@
-<div></div>
+<div></div><html>
+    <head>
+        <!-- Mocha stylesheet -->
+        <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+        <!-- JQuery link -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Sudoku App</title>
+
+        <link rel="stylesheet" href="style.css"></link>
+        <script src="main.js"></script>
+        <script src="./classes\Cell.js"></script>
+        <script src="./classes/CellStatus.js"></script>
+        <script src="./classes/Game.js"></script>
+    </head>
+    <body>
+        <!-- Do not edit this section. -->
+        <div id="mocha"></div>
+
+        <script src="https://unpkg.com/chai/chai.js"></script>
+        <script src="https://unpkg.com/mocha/mocha.js"></script>
+    
+        <script class="mocha-init">
+            mocha.setup('tdd');
+            mocha.checkLeaks();
+        </script>
+        
+        <script src="COMP3006_SetEx_2022-23_Tests.js"></script>
+
+        <!-- Your HTML code goes here. -->
+        <h1 id="heading">Sudoku</h1>
+
+        <!-- 9x9 Sudoku Board -->
+        <div id="board">
+            <div class="group" id="g0_0">
+                <div class="cell" id="cell_0_0"></div>
+                <div class="cell" id="cell_0_1"></div>
+                <div class="cell" id="cell_0_2"></div>
+                <div class="cell" id="cell_1_0"></div>
+                <div class="cell" id="cell_1_1"></div>
+                <div class="cell" id="cell_1_2"></div>
+                <div class="cell" id="cell_2_0"></div>
+                <div class="cell" id="cell_2_1"></div>
+                <div class="cell" id="cell_2_2"></div>
+            </div>
+            <div class="group" id="g0_1">
+                <div class="cell" id="cell_0_3"></div>
+                <div class="cell" id="cell_0_4"></div>
+                <div class="cell" id="cell_0_5"></div>
+                <div class="cell" id="cell_1_3"></div>
+                <div class="cell" id="cell_1_4"></div>
+                <div class="cell" id="cell_1_5"></div>
+                <div class="cell" id="cell_2_3"></div>
+                <div class="cell" id="cell_2_4"></div>
+                <div class="cell" id="cell_2_5"></div>
+            </div>
+            <div class="group" id="g0_2">
+                <div class="cell" id="cell_0_6"></div>
+                <div class="cell" id="cell_0_7"></div>
+                <div class="cell" id="cell_0_8"></div>
+                <div class="cell" id="cell_1_6"></div>
+                <div class="cell" id="cell_1_7"></div>
+                <div class="cell" id="cell_1_8"></div>
+                <div class="cell" id="cell_2_6"></div>
+                <div class="cell" id="cell_2_7"></div>
+                <div class="cell" id="cell_2_8"></div>
+            </div>
+            <div class="group" id="g1_0">
+                <div class="cell" id="cell_3_0"></div>
+                <div class="cell" id="cell_3_1"></div>
+                <div class="cell" id="cell_3_2"></div>
+                <div class="cell" id="cell_4_0"></div>
+                <div class="cell" id="cell_4_1"></div>
+                <div class="cell" id="cell_4_2"></div>
+                <div class="cell" id="cell_5_0"></div>
+                <div class="cell" id="cell_5_1"></div>
+                <div class="cell" id="cell_5_2"></div>
+            </div>
+            <div class="group" id="g1_1">
+                <div class="cell" id="cell_3_3"></div>
+                <div class="cell" id="cell_3_4"></div>
+                <div class="cell" id="cell_3_5"></div>
+                <div class="cell" id="cell_4_3"></div>
+                <div class="cell" id="cell_4_4"></div>
+                <div class="cell" id="cell_4_5"></div>
+                <div class="cell" id="cell_5_3"></div>
+                <div class="cell" id="cell_5_4"></div>
+                <div class="cell" id="cell_5_5"></div>
+            </div>
+            <div class="group" id="g1_2">
+                <div class="cell" id="cell_3_6"></div>
+                <div class="cell" id="cell_3_7"></div>
+                <div class="cell" id="cell_3_8"></div>
+                <div class="cell" id="cell_4_6"></div>
+                <div class="cell" id="cell_4_7"></div>
+                <div class="cell" id="cell_4_8"></div>
+                <div class="cell" id="cell_5_6"></div>
+                <div class="cell" id="cell_5_7"></div>
+                <div class="cell" id="cell_5_8"></div>
+            </div>
+            <div class="group" id="g2_0">
+                <div class="cell" id="cell_6_0"></div>
+                <div class="cell" id="cell_6_1"></div>
+                <div class="cell" id="cell_6_2"></div>
+                <div class="cell" id="cell_7_0"></div>
+                <div class="cell" id="cell_7_1"></div>
+                <div class="cell" id="cell_7_2"></div>
+                <div class="cell" id="cell_8_0"></div>
+                <div class="cell" id="cell_8_1"></div>
+                <div class="cell" id="cell_8_2"></div>
+            </div>
+            <div class="group" id="g2_1">
+                <div class="cell" id="cell_6_3"></div>
+                <div class="cell" id="cell_6_4"></div>
+                <div class="cell" id="cell_6_5"></div>
+                <div class="cell" id="cell_7_3"></div>
+                <div class="cell" id="cell_7_4"></div>
+                <div class="cell" id="cell_7_5"></div>
+                <div class="cell" id="cell_8_3"></div>
+                <div class="cell" id="cell_8_4"></div>
+                <div class="cell" id="cell_8_5"></div>
+            </div>
+            <div class="group" id="g2_2">
+                <div class="cell" id="cell_6_6"></div>
+                <div class="cell" id="cell_6_7"></div>
+                <div class="cell" id="cell_6_8"></div>
+                <div class="cell" id="cell_7_6"></div>
+                <div class="cell" id="cell_7_7"></div>
+                <div class="cell" id="cell_7_8"></div>
+                <div class="cell" id="cell_8_6"></div>
+                <div class="cell" id="cell_8_7"></div>
+                <div class="cell" id="cell_8_8"></div>
+            </div>
+        </div>
+        <!-- END of 9x9 Sudoku Board -->
+
+        <button id="checkCell">Check Cell</button>
+        <input id="number" type="number" min="1" max="9">
+        <p><span id="message"></span></p>
+        <button id="help">Help</button>
+        <button id="clear">Clear</button>
+        <button id="update">Update</button>
+
+        <!-- Do not edit this! -->
+        <script class="mocha-exec">
+            setTimeout(() => {
+                mocha.run();
+            }, 50);
+        </script>
+    </body>
+</html>

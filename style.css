@@ -1,0 +1,38 @@
+body{
+    background-color: #fcfcfc;
+    font-family: Verdana;
+    color: black;
+}
+h1{
+    font-size: 36px;
+}
+#board {
+    width: 435px;
+    /* extra styling */
+    /*height: 435px;*/
+    display: flex;
+    flex-wrap: wrap;
+}
+.group {
+    width: 141px;
+    border: 2px solid #969696;
+}
+.cell {
+    width: 35px;
+    padding: 3px;
+    margin: 0;
+    border: 1px solid #cfcfcf;
+    float: left;
+    text-align: center;
+    font-size: 28px;
+    min-height: 35px;
+}
+.highlighted{
+    background-color: #aaccff;
+}
+.notok {
+    color: #ff0000;
+}
+.ok {
+    color: #00ff00;
+}
