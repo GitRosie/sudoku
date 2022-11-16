@@ -87,7 +87,7 @@ $(window).on("load", function() {
     });
 
     $("#clear").click(function() {
-
+        $("#message").html("");
     });
 
     $("#update").click(function() {
