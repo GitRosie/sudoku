@@ -32,7 +32,7 @@ $(window).on("load", function() {
         highlightCell(x, y, game.neighbourColour, game.selectedColour)
     })
     $("#checkCell").click(function() {
-        checkCell();
+        checkCells(game, x, y);
     });
 
     $("#help").click(function() {
@@ -45,8 +45,8 @@ $(window).on("load", function() {
 
     $("#update").click(function() {
         let number = $("#number").val();
-        console.log("number:" + number)
-        console.log("cell:" + selectedCell)
+        //console.log("number:" + number) //DEBUG
+        //console.log("cell:" + selectedCell) //DEBUG
                     
         if (selectedCell == undefined){
             $("#message").html("You have not selected a cell!");
@@ -60,8 +60,6 @@ $(window).on("load", function() {
         if (number != "" && number <= 9 && number >= 1 && selectedCell != undefined) {
             $("#message").html("Cell updated to " + number);
             updateCell(selectedCell, number)
-            let isValid = game.isValid(x,y)
-            console.log(isValid)
         }
     });
                 

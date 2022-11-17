@@ -72,3 +72,13 @@ function arrayDuplicates(array){
     let isUnique = array.length == new Set(array).size
     return isUnique
 }
+function checkCells(game, x, y){
+
+    let isValid = game.isValid(x,y)
+    if (isValid== true) {
+        $("#cell_" + x + "_" + y).css("background-color", "green");
+    }
+    if (isValid== false) {
+        $("#cell_" + x + "_" + y).css("background-color", "red");
+    }   
+}
