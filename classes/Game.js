@@ -1,7 +1,7 @@
 class Game {
     constructor(loadedBoard){
         let boardSize = 9; //number of rows/columns (square)
-        let groupSize = Math.sqrt(boardSize) //grid size of groups
+        //let groupSize = Math.sqrt(boardSize) //grid size of groups
         let selectedColour = "#6699ff"
         let neighbourColour = "#aaccff"
 
@@ -29,17 +29,7 @@ class Game {
         return board
     }
 
-    //NICE TO HAVE: use js to create the cell divs
-    //addCells() {
-        // append div into group class: https://api.jquery.com/append/
-
-        //let groupID = "g" + i + "_" + j
-        //let cellId = "cell_" + i + "_" + j
-        //let contents = "<div class=\"cell\" id=\"" + cellId + "\"></div>"
-        
-        //$(groupId).append(contents);
-        //$("#cell_" + i + "_" + j).html(board[i][j])
-    //}
+    //NICE TO HAVE HERE: use js to create the cell divs
     
     displayGame(board, boardSize){
         // display the board in a grid on the page
@@ -49,5 +39,69 @@ class Game {
                 $("#cell_" + i + "_" + j).html(board[i][j])
             }
         }
+    }
+
+    isValid(x,y) {
+        let selectedCellVal = $("#cell_" + x + "_" + y).html()
+        let isValid = true
+        //Check column for same value
+        isValid = this.validCol(x, y, selectedCellVal, isValid)
+        //console.log(isValid) //DEBUG
+        //Check row for same value
+        isValid = this.validRow(x, y, selectedCellVal, isValid)
+        //console.log(isValid) //DEBUG
+        //Check group for same value
+        isValid = this.validGroup(x, y, selectedCellVal, isValid)
+        //console.log(isValid) //DEBUG
+        //return value if haven't already
+        return isValid
+    }
+
+    validCol(x, y, selectedCellVal, isValid){
+        for(let i=0; i < 9; i++) {
+            let compareTo = "#cell_" + i + "_" + y
+            let compareCellVal = $(compareTo).html()
+            if(i != x){
+                console.log("column " + i) //DEBUG
+                if (selectedCellVal == compareCellVal) {
+                    isValid = false
+                    return isValid
+                }
+            }
+        }
+        return isValid
+    }
+    validRow(x, y, selectedCellVal, isValid){
+        for(let i=0; i < 9; i++) {
+            let compareTo = "#cell_" + x + "_" + i
+            let compareCellVal = $(compareTo).html()
+            if(i != y){
+                console.log("row " + i) //DEBUG
+                if (selectedCellVal == compareCellVal) {
+                    isValid = false
+                    return isValid
+                }
+            }
+        }
+        return isValid
+    }
+    validGroup(x, y, selectedCellVal, isValid){
+        let group = getGroup(x,y);
+
+        for (let i=0; i<9; i++) {
+            let gx = group[i][0]
+            let gy = group[i][1]
+            let compareTo = "#cell_" + gx + "_" + gy
+            let compareCellVal = $(compareTo).html()
+
+            if (x != gx && y!=gy){
+                console.log("group " + i) //DEBUG
+                if (selectedCellVal == compareCellVal){
+                    isValid = false
+                    return isValid
+                }
+            }
+        }
+        return isValid
     }
 }

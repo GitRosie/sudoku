@@ -46,6 +46,24 @@ function highlightCell(x, y, neighbourColour, selectedColour){
     $("#cell_" + x + "_" + y).css("background-color", selectedColour);
 }
 
-function updateCell(input){
+function updateCell(selectedCell, input){
     $("#" + selectedCell).html(input)
+}
+
+function getCoordinates(selectedCell){
+    //split selected cell in to x and y coordinates: https://www.w3schools.com/jsref/jsref_split.asp
+    let coordinates = [];
+    coordinates = selectedCell.split("_");
+    return coordinates
+}
+
+function xCoordinate(selectedCell){
+    let coordinates = getCoordinates(selectedCell)
+    x = coordinates[1]
+    return x
+}
+function yCoordinate(selectedCell){
+    let coordinates = getCoordinates(selectedCell)
+    y = coordinates[2]
+    return y
 }
