@@ -28,6 +28,16 @@ class Game {
         }
         return board
     }
+
+    //NICE TO HAVE: use js to create the cell divs
+    //addCells() {
+        // append div into group class: https://api.jquery.com/append/
+        //let cellId = "cell_" + i + "_" + j
+        //let contents = "<div class=\"cell\" id=\"" + cellId + "\"></div>"
+        
+        //$(groupId).append(contents);
+        //$("#cell_" + i + "_" + j).html(board[i][j])
+    //}
     
     displayGame(board, boardSize){
         // display the board in a grid on the page
