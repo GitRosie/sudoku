@@ -62,7 +62,7 @@ class Game {
             let compareTo = "#cell_" + i + "_" + y
             let compareCellVal = $(compareTo).html()
             if(i != x){
-                console.log("column " + i) //DEBUG
+                //console.log("column " + i) //DEBUG
                 if (selectedCellVal == compareCellVal) {
                     isValid = false
                     return isValid
@@ -76,7 +76,7 @@ class Game {
             let compareTo = "#cell_" + x + "_" + i
             let compareCellVal = $(compareTo).html()
             if(i != y){
-                console.log("row " + i) //DEBUG
+                //console.log("row " + i) //DEBUG
                 if (selectedCellVal == compareCellVal) {
                     isValid = false
                     return isValid
@@ -87,21 +87,16 @@ class Game {
     }
     validGroup(x, y, selectedCellVal, isValid){
         let group = getGroup(x,y);
+        let groupValues = [];
 
         for (let i=0; i<9; i++) {
             let gx = group[i][0]
             let gy = group[i][1]
             let compareTo = "#cell_" + gx + "_" + gy
-            let compareCellVal = $(compareTo).html()
-
-            if (x != gx && y!=gy){
-                console.log("group " + i) //DEBUG
-                if (selectedCellVal == compareCellVal){
-                    isValid = false
-                    return isValid
-                }
-            }
+            groupValues.push($(compareTo).html())           
         }
+        isValid = arrayDuplicates(groupValues)
+        //console.log(groupValues) //DEBUG
         return isValid
     }
 }

@@ -67,3 +67,8 @@ function yCoordinate(selectedCell){
     y = coordinates[2]
     return y
 }
+function arrayDuplicates(array){
+    //Check if array contains duplicates
+    let isUnique = array.length == new Set(array).size
+    return isUnique
+}
