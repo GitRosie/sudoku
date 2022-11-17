@@ -14,7 +14,7 @@ function getGroup(x,y) {
         coordinates[i].push(split[1],split[2])
         i++
     })
-    console.log(coordinates) //DEBUG
+    //console.log(coordinates) //DEBUG
     return coordinates
 }
 
@@ -44,4 +44,8 @@ function highlightCell(x, y, neighbourColour, selectedColour){
     }
     //Highlight Selected Cell
     $("#cell_" + x + "_" + y).css("background-color", selectedColour);
+}
+
+function updateCell(input){
+    $("#" + selectedCell).html(input)
 }

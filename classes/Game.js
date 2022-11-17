@@ -32,6 +32,8 @@ class Game {
     //NICE TO HAVE: use js to create the cell divs
     //addCells() {
         // append div into group class: https://api.jquery.com/append/
+
+        //let groupID = "g" + i + "_" + j
         //let cellId = "cell_" + i + "_" + j
         //let contents = "<div class=\"cell\" id=\"" + cellId + "\"></div>"
         

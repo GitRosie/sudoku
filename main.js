@@ -10,6 +10,8 @@ let testboard = [   // A valid board.
 [5, 8, 1, 3, 4, 9, 7, 2, 6]
 ]
 
+let selectedCell;
+
 $(window).on("load", function() {
     let game = new Game(testboard);
     //console.log(game.board); //DEBUG
@@ -20,8 +22,10 @@ $(window).on("load", function() {
     $(".cell").click(function(event) {
         let coordinates = [];
         //get id of selected cell: https://stackoverflow.com/questions/48239/getting-the-id-of-the-element-that-fired-an-event
-        let selectedCell = event.target.id;
+        //let selectedCell = event.target.id;
+        selectedCell = event.target.id;        
         console.log(selectedCell); //DEBUG
+
         //split selected cell in to x and y coordinates: https://www.w3schools.com/jsref/jsref_split.asp
         coordinates = selectedCell.split("_");
 
@@ -42,12 +46,21 @@ $(window).on("load", function() {
 
     $("#update").click(function() {
         let number = $("#number").val();
+        console.log("number:" + number)
+        console.log("cell:" + selectedCell)
                     
-        if (number == "") {
-            $("#message").html("You have not entered a value!");
+        if (selectedCell == undefined){
+            $("#message").html("You have not selected a cell!");
         }
-        else {
-            updateCell()
+        if (selectedCell != undefined && (number > 9 || number < 1)) {
+            if (number == "") {
+                $("#message").html("You have not entered a value!");
+            }
+            else{$("#message").html("Numbers must be between 1 and 9!");}            
+        }
+        if (number != "" && number <= 9 && number >= 1 && selectedCell != undefined) {
+            $("#message").html("Cell updated to " + number);
+            updateCell(number)
         }
     });
                 
