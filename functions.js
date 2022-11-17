@@ -67,13 +67,16 @@ function yCoordinate(selectedCell){
     y = coordinates[2]
     return y
 }
-function arrayDuplicates(array){
+function arrayDuplicates(array, isValid){
     //Check if array contains duplicates
-    let isUnique = array.length == new Set(array).size
-    return isUnique
+    let isDuplicate = array.length != new Set(array).size
+    //console.log(isDuplicate)
+    if (isDuplicate == true) {
+        isValid = false
+    }
+    return isValid
 }
 function checkCells(game, x, y){
-
     let isValid = game.isValid(x,y)
     if (isValid== true) {
         $("#cell_" + x + "_" + y).css("background-color", "green");

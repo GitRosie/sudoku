@@ -95,8 +95,8 @@ class Game {
             let compareTo = "#cell_" + gx + "_" + gy
             groupValues.push($(compareTo).html())           
         }
-        isValid = arrayDuplicates(groupValues)
-        //console.log(groupValues) //DEBUG
+        isValid = arrayDuplicates(groupValues, isValid)
+        console.log(isValid) //DEBUG
         return isValid
     }
 }
