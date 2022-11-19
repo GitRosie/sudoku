@@ -15,7 +15,7 @@ class Game {
             this.board[i] = new Array(boardSize);    //2D Array
         }
 
-        this.board = this.loadGame(this.board, loadedBoard, boardSize)
+        this.loadGame(this.board, loadedBoard, this.boardSize)
     }
 
     //Class methods: https://www.w3schools.com/js/js_classes.asp
@@ -29,7 +29,73 @@ class Game {
         return board
     }
 
-    //NICE TO HAVE HERE: use js to create the cell divs
+    createCells(){
+        let groupId;
+        for(let i=0; i<3; i++){
+            for(let j=0; j<3; j++){
+                groupId="#g0_0"
+                // append div into group class: https://api.jquery.com/append/
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=0; i<3; i++){
+            for(let j=3; j<6; j++){
+                groupId="#g0_1"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=0; i<3; i++){
+            for(let j=6; j<9; j++){
+                groupId="#g0_2"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=3; i<6; i++){
+            for(let j=0; j<3; j++){
+                groupId="#g1_0"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=3; i<6; i++){
+            for(let j=3; j<6; j++){
+                groupId="#g1_1"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=3; i<6; i++){
+            for(let j=6; j<9; j++){
+                groupId="#g1_2"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=6; i<9; i++){
+            for(let j=0; j<3; j++){
+                groupId="#g2_0"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=6; i<9; i++){
+            for(let j=3; j<6; j++){
+                groupId="#g2_1"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+        for(let i=6; i<9; i++){
+            for(let j=6; j<9; j++){
+                groupId="#g2_2"
+                let contents = "<div class=\"cell\" id=\"cell_" + i + "_" + j + "\"></div>"
+                $(groupId).append(contents);
+            }
+        }
+    }
     
     displayGame(board, boardSize){
         // display the board in a grid on the page
@@ -51,7 +117,7 @@ class Game {
         isValid = this.validRow(x, y, selectedCellVal, isValid)
         //console.log(isValid) //DEBUG
         //Check group for same value
-        isValid = this.validGroup(x, y, selectedCellVal, isValid)
+        isValid = this.validGroup(x, y, isValid)
         //console.log(isValid) //DEBUG
         //return value if haven't already
         return isValid
@@ -85,13 +151,13 @@ class Game {
         }
         return isValid
     }
-    validGroup(x, y, selectedCellVal, isValid){
-        let group = getGroup(x,y);
+    validGroup(x, y, isValid){
+        let groupCoords = getGroup(x,y);
         let groupValues = [];
 
         for (let i=0; i<9; i++) {
-            let gx = group[i][0]
-            let gy = group[i][1]
+            let gx = groupCoords[i][0]
+            let gy = groupCoords[i][1]
             let compareTo = "#cell_" + gx + "_" + gy
             groupValues.push($(compareTo).html())           
         }

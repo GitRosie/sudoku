@@ -1,17 +1,21 @@
-function getGroup(x,y) {
+function getGroup(x, y) {
     //get parent: https://www.geeksforgeeks.org/jquery-parent-parents-with-examples/#:~:text=The%20parent()%20is%20an,element%20and%20return%20that%20element.&text=Here%20selector%20is%20the%20selected%20elements%20whose%20parent%20need%20to%20find.
     let cellID = "#cell_" + x + "_" + y
-    let parent = $(cellID).parent()
+    //console.log(cellID)
+    let parent = "#" + $(cellID).parent().attr("id")
     //console.log(parent) //DEBUG
 
     //Get children: https://stackoverflow.com/questions/9151729/how-to-get-children-array-of-an-element-in-jquery
     let coordinates = [];
+    
     let i=0
-
     $(parent).children().each(function(){
-        let split = this.id.split("_")
         coordinates[i] = []
-        coordinates[i].push(split[1],split[2])
+        //console.log(this.id)
+        let split = this.id.split("_")
+        //console.log(split[0] + ", " + split[1] + ", " + split[2])
+        
+        coordinates[i].push(split[1], split[2])
         i++
     })
     //console.log(coordinates) //DEBUG
@@ -35,11 +39,11 @@ function highlightCell(x, y, neighbourColour, selectedColour){
         $("#cell_" + x + "_" + y).css("background-color", neighbourColour);
     }
     //Highlight group
-    let group = getGroup(x,y);
+    let groupCoord = getGroup(x,y);
 
     for (let i=0; i<9; i++) {
-            let gx = group[i][0]
-            let gy = group[i][1]
+            let gx = groupCoord[i][0]
+            let gy = groupCoord[i][1]
             $("#cell_" + gx + "_" + gy).css("background-color", neighbourColour);
     }
     //Highlight Selected Cell
