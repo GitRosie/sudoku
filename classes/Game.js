@@ -96,13 +96,13 @@ class Game {
             }
         }
     }
-    
-    displayGame(board, boardSize){
+
+    displayGame(){
         // display the board in a grid on the page
         //each cell has class cell and id cell_i_j where i is the row and j is the column
-        for (let i=0; i<boardSize;i++){
-            for (let j=0; j< boardSize; j++) {
-                $("#cell_" + i + "_" + j).html(board[i][j])
+        for (let i=0; i<9;i++){
+            for (let j=0; j< 9; j++) {
+                $("#cell_" + i + "_" + j).html(this.board[i][j])
             }
         }
     }
@@ -145,7 +145,7 @@ class Game {
             let compareTo = "#cell_" + row + "_" + i
             let compareCellVal = $(compareTo).html()
             if(i != col){
-                console.log("row " + i) //DEBUG
+                //console.log("row " + i) //DEBUG
                 if (selectedCellVal == compareCellVal) {
                     isValid = false
                 }
@@ -164,7 +164,7 @@ class Game {
             groupValues.push($(compareTo).html())           
         }
         isValid = arrayDuplicates(groupValues, isValid)
-        console.log(isValid) //DEBUG
+        //console.log(isValid) //DEBUG
         return isValid
     }
 }
