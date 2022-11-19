@@ -107,58 +107,60 @@ class Game {
         }
     }
 
-    isValid(x,y) {
-        let selectedCellVal = $("#cell_" + x + "_" + y).html()
+    isValid(row, col) {
+        let selectedCellVal = $("#cell_" + row + "_" + col).html()
         let isValid = true
         //Check column for same value
-        isValid = this.validCol(x, y, selectedCellVal, isValid)
+        isValid = this.validCol(row, col, selectedCellVal, isValid)
         //console.log(isValid) //DEBUG
         //Check row for same value
-        isValid = this.validRow(x, y, selectedCellVal, isValid)
+        isValid = this.validRow(row, col, selectedCellVal, isValid)
         //console.log(isValid) //DEBUG
         //Check group for same value
-        isValid = this.validGroup(x, y, isValid)
+        isValid = this.validGroup(row, col, isValid)
         //console.log(isValid) //DEBUG
         //return value if haven't already
         return isValid
     }
 
-    validCol(x, y, selectedCellVal, isValid){
+    validCol(row, col, selectedCellVal, isValid){
         for(let i=0; i < 9; i++) {
-            let compareTo = "#cell_" + i + "_" + y
+            let compareTo = "#cell_" + i + "_" + col
             let compareCellVal = $(compareTo).html()
-            if(i != x){
+            if(i != row){
                 //console.log("column " + i) //DEBUG
                 if (selectedCellVal == compareCellVal) {
                     isValid = false
-                    return isValid
                 }
             }
         }
         return isValid
     }
-    validRow(x, y, selectedCellVal, isValid){
+    validRow(row, col, selectedCellVal, isValid){
+        let rowCoods = [];
+
         for(let i=0; i < 9; i++) {
-            let compareTo = "#cell_" + x + "_" + i
+            rowCoods[i] = []
+            //rowCoords[]
+            let compareTo = "#cell_" + row + "_" + i
             let compareCellVal = $(compareTo).html()
-            if(i != y){
-                //console.log("row " + i) //DEBUG
+            if(i != col){
+                console.log("row " + i) //DEBUG
                 if (selectedCellVal == compareCellVal) {
                     isValid = false
-                    return isValid
                 }
             }
         }
         return isValid
     }
-    validGroup(x, y, isValid){
-        let groupCoords = getGroup(x,y);
+    validGroup(row, col, isValid){
+        let groupCoords = getGroup(row,col);
         let groupValues = [];
 
         for (let i=0; i<9; i++) {
-            let gx = groupCoords[i][0]
-            let gy = groupCoords[i][1]
-            let compareTo = "#cell_" + gx + "_" + gy
+            let groupRow = groupCoords[i][0]
+            let groupCol = groupCoords[i][1]
+            let compareTo = "#cell_" + groupRow + "_" + groupCol
             groupValues.push($(compareTo).html())           
         }
         isValid = arrayDuplicates(groupValues, isValid)

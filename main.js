@@ -11,8 +11,6 @@
                 ]  
 
 let selectedCell;
-let x;
-let y;
 
 $(window).on("load", function() {
     let game = new Game(testboard);
@@ -27,13 +25,17 @@ $(window).on("load", function() {
         selectedCell = event.target.id;        
         //console.log(selectedCell); //DEBUG
 
-        x = xCoordinate(selectedCell)
-        y = yCoordinate(selectedCell)
+        let row = rowCoordinate(selectedCell)
+        let col = colCoordinate(selectedCell)
 
-        highlightCell(x, y, game.neighbourColour, game.selectedColour)
+        highlightCell(row, col, game.neighbourColour, game.selectedColour)
     })
     $("#checkCell").click(function() {
-        checkCells(game, x, y);
+        if (selectedCell == undefined){
+            $("#message").html("You have not selected a cell!");
+        } else {
+            checkCells(game, row, col);
+        }
     });
 
     $("#help").click(function() {

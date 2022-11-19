@@ -1,6 +1,6 @@
-function getGroup(x, y) {
+function getGroup(row, col) {
     //get parent: https://www.geeksforgeeks.org/jquery-parent-parents-with-examples/#:~:text=The%20parent()%20is%20an,element%20and%20return%20that%20element.&text=Here%20selector%20is%20the%20selected%20elements%20whose%20parent%20need%20to%20find.
-    let cellID = "#cell_" + x + "_" + y
+    let cellID = "#cell_" + row + "_" + col
     //console.log(cellID)
     let parent = "#" + $(cellID).parent().attr("id")
     //console.log(parent) //DEBUG
@@ -23,31 +23,31 @@ function getGroup(x, y) {
 }
 
 //BUG in highlightCell - Hardcoded board size due to limitations on variables
-function highlightCell(x, y, neighbourColour, selectedColour){
+function highlightCell(row, col, neighbourColour, selectedColour){
     //reset all cells to default
-    for (let i=0; i<9; i++){
-        for(let j = 0; j < 9; j++){
-            $("#cell_" + i + "_" + j).css("background-color", "");
+    for (let r=0; r<9; r++){
+        for(let c = 0; c < 9; c++){
+            $("#cell_" + r + "_" + c).css("background-color", "");
         }
     }
     //Highlight row
-    for(let y=0; y < 9; y++) {
-        $("#cell_" + x + "_" + y).css("background-color", neighbourColour);
+    for(let c=0; c < 9; c++) {
+        $("#cell_" + row + "_" + c).css("background-color", neighbourColour);
     }
     //Highlight column
-    for (let x=0; x<9; x++){
-        $("#cell_" + x + "_" + y).css("background-color", neighbourColour);
+    for (let r=0; r<9; r++){
+        $("#cell_" + r + "_" + col).css("background-color", neighbourColour);
     }
     //Highlight group
-    let groupCoord = getGroup(x,y);
+    let groupCoord = getGroup(row, col);
 
     for (let i=0; i<9; i++) {
-            let gx = groupCoord[i][0]
-            let gy = groupCoord[i][1]
-            $("#cell_" + gx + "_" + gy).css("background-color", neighbourColour);
+            let groupRow = groupCoord[i][0]
+            let groupCol = groupCoord[i][1]
+            $("#cell_" + groupRow + "_" + groupCol).css("background-color", neighbourColour);
     }
     //Highlight Selected Cell
-    $("#cell_" + x + "_" + y).css("background-color", selectedColour);
+    $("#cell_" + row + "_" + col).css("background-color", selectedColour);
 }
 
 function updateCell(selectedCell, input){
@@ -61,15 +61,15 @@ function getCoordinates(selectedCell){
     return coordinates
 }
 
-function xCoordinate(selectedCell){
+function rowCoordinate(selectedCell){
     let coordinates = getCoordinates(selectedCell)
-    x = coordinates[1]
-    return x
+    row = coordinates[1]
+    return row
 }
-function yCoordinate(selectedCell){
+function colCoordinate(selectedCell){
     let coordinates = getCoordinates(selectedCell)
-    y = coordinates[2]
-    return y
+    col = coordinates[2]
+    return col
 }
 function arrayDuplicates(array, isValid){
     //Check if array contains duplicates
@@ -80,12 +80,12 @@ function arrayDuplicates(array, isValid){
     }
     return isValid
 }
-function checkCells(game, x, y){
-    let isValid = game.isValid(x,y)
+function checkCells(game, row, col){
+    let isValid = game.isValid(row, col)
     if (isValid== true) {
-        $("#cell_" + x + "_" + y).css("background-color", "green");
+        $("#cell_" + row + "_" + col).css("background-color", "#00ff00");
     }
     if (isValid== false) {
-        $("#cell_" + x + "_" + y).css("background-color", "red");
+        $("#cell_" + row + "_" + col).css("background-color", "#ff0000");
     }   
 }
