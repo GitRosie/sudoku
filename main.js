@@ -1,4 +1,15 @@
 let testboard = [[],[],[],[],[],[],[],[],[]] 
+/* let testboard = [   // A valid board.
+                    [6, 5, 8, 4, 2, 7, 9, 1, 3],
+                    [4,  , 2, 9, 1, 5, 6, 8,  ],
+                    [9, 1,  , 6, 8, 3, 2, 5, 4],
+                    [8, 6, 5, 1, 3, 2, 4, 7, 9],
+                    [3,  , 4, 5, 9, 8, 1, 6, 2],
+                    [1, 2, 9, 7, 6, 4, 5, 3, 8],
+                    [2, 9, 6, 8, 7, 1, 3, 4, 5],
+                    [7, 4, 3, 2, 5, 6, 8, 9, 1],
+                    [5, 8, 1, 3, 4, 9, 7, 2, 6]
+                ]  */ 
 let selectedCell;
 let row;
 let col;
@@ -30,7 +41,19 @@ $(window).on("load", function() {
     });
 
     $("#help").click(function() {
+        //No cell chosen error
+        if (selectedCell == undefined){
+            $("#message").html("You have not selected a cell!");
+        }
 
+        let suggestions = game.suggest(row, col);
+        //console.log(suggestions.length) //DEBUG
+        if(suggestions.length >= 1 && selectedCell != undefined){
+            $("#message").html("Possible value(s) of cell: " + suggestions);
+        } 
+        if(suggestions.length = 0 && selectedCell != undefined) {
+            $("#message").html("No suggestions found");
+        }
     });
 
     $("#clear").click(function() {
