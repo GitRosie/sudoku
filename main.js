@@ -1,5 +1,5 @@
-let testboard = [[],[],[],[],[],[],[],[],[]] 
-/* let testboard = [   // A valid board.
+//let testboard = [[],[],[],[],[],[],[],[],[]] 
+ let testboard = [   // A valid board.
                     [6, 5, 8, 4, 2, 7, 9, 1, 3],
                     [4,  , 2, 9, 1, 5, 6, 8,  ],
                     [9, 1,  , 6, 8, 3, 2, 5, 4],
@@ -9,7 +9,7 @@ let testboard = [[],[],[],[],[],[],[],[],[]]
                     [2, 9, 6, 8, 7, 1, 3, 4, 5],
                     [7, 4, 3, 2, 5, 6, 8, 9, 1],
                     [5, 8, 1, 3, 4, 9, 7, 2, 6]
-                ]  */ 
+                ]   
 let selectedCell;
 let row;
 let col;
@@ -21,8 +21,7 @@ $(window).on("load", function() {
     game.displayGame();
 
     //Event listeners
-    $(".cell").click(function(event) {
-        
+    $("body").on("click", ".cell", function(event) {        
         //get id of selected cell: https://stackoverflow.com/questions/48239/getting-the-id-of-the-element-that-fired-an-event
         selectedCell = event.target.id;        
         //console.log(selectedCell); //DEBUG

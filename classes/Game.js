@@ -98,11 +98,22 @@ class Game {
     }
 
     displayGame(){
+        this.teardown();
+        this.createCells();
         // display the board in a grid on the page
         //each cell has class cell and id cell_i_j where i is the row and j is the column
         for (let i=0; i<9;i++){
             for (let j=0; j< 9; j++) {
                 $("#cell_" + i + "_" + j).html(this.board[i][j])
+            }
+        }
+    }
+
+    teardown(){
+        // Clear the board.
+        for (let i=0; i<3; i++) {
+            for (let j=0; j<3; j++) {
+                $("#g" + i + "_" + j).empty();
             }
         }
     }
