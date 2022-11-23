@@ -1,21 +1,16 @@
 class Game {
     constructor(loadedBoard){
-        let boardSize = 9; //number of rows/columns (square)
-        //let groupSize = Math.sqrt(boardSize) //grid size of groups
-        let selectedColour = "#6699ff"
-        let neighbourColour = "#aaccff"
-
-        this.boardSize = boardSize;
-        this.selectedColour = selectedColour;
-        this.neighbourColour = neighbourColour;
+        let boardSize = 9;
+        this.selectedColour = "#6699ff"
+        this.neighbourColour = "#aaccff"
 
         //Create 2D Array: https://jsfiddle.net/matasoy/oetw73sj/
-        this.board = new Array(boardSize); //1D Array
+        this.board = []; //1D Array
         for (let i = 0; i < boardSize; i++) {
-            this.board[i] = new Array(boardSize);    //2D Array
+            this.board[i] = [];    //2D Array
         }
 
-        this.loadGame(this.board, loadedBoard, this.boardSize)
+        this.loadGame(this.board, loadedBoard, boardSize)
     }
 
     //Class methods: https://www.w3schools.com/js/js_classes.asp

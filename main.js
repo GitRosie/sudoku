@@ -1,22 +1,21 @@
-//let testboard = [[],[],[],[],[],[],[],[],[]] 
- let testboard = [   // A valid board.
+let board = [[],[],[],[],[],[],[],[],[]] 
+/* let testboard = [   // A valid board.
                     [6, 5, 8, 4, 2, 7, 9, 1, 3],
-                    [4,  , 2, 9, 1, 5, 6, 8,  ],
-                    [9, 1,  , 6, 8, 3, 2, 5, 4],
+                    [4, 3, 2, 9, 1, 5, 6, 8, 7],
+                    [9, 1, 7, 6, 8, 3, 2, 5, 4],
                     [8, 6, 5, 1, 3, 2, 4, 7, 9],
-                    [3,  , 4, 5, 9, 8, 1, 6, 2],
+                    [3, 7, 4, 5, 9, 8, 1, 6, 2],
                     [1, 2, 9, 7, 6, 4, 5, 3, 8],
                     [2, 9, 6, 8, 7, 1, 3, 4, 5],
                     [7, 4, 3, 2, 5, 6, 8, 9, 1],
                     [5, 8, 1, 3, 4, 9, 7, 2, 6]
-                ]   
+                ]  */  
 let selectedCell;
 let row;
 let col;
 
 $(window).on("load", function() {
-    let game = new Game(testboard);
-    game.createCells();
+    let game = new Game(board);
     //console.log(game.board); //DEBUG
     game.displayGame();
 
