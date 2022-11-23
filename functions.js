@@ -89,3 +89,6 @@ function checkCells(game, row, col){
         $("#cell_" + row + "_" + col).css("background-color", "#ff0000");
     }   
 }
+function unique(arr){
+    return Array.from(new Set(arr))
+}

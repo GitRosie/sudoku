@@ -176,42 +176,46 @@ class Game {
 
     suggest(row, col){
         //The values that can appear in any row, col or group
-        let values = ["1","2","3","4","5","6","7","8","9"];
-
-        //compare to row
-        let rowVals = [];
-        for (let i=0; i<9;i++){   
+        const valuesSet = new Set(["1","2","2","3","4","5","6","7","8","9"]);
+        let neighboursSet = new Set();
+        
+        //add row values
+        for (let i=0; i<9; i++){
             let rowCell = "#cell_" + row + "_" + i
-            rowVals.push($(rowCell).html())       
+            let cellVal = $(rowCell).html()
+            if(cellVal != ""){
+                neighboursSet.add(cellVal)
+            }
         }
-        //console.log(rowVals) //DEBUG
-        //compare: https://stackoverflow.com/questions/2963281/javascript-algorithm-to-find-elements-in-array-that-are-not-in-another-array
-        let suggestions = values.filter(x => !rowVals.includes(x));
-        //console.log(suggestions) //DEBUG
-
-        //compare to column
-        let colVals = [];
+        //add col vals
         for (let i=0; i<9; i++){
             let colCell = "#cell_" + i + "_" + col
-            colVals.push($(colCell).html())
+            let cellVal = $(colCell).html()
+            if(cellVal != ""){
+                neighboursSet.add(cellVal)
+            }
         }
-        suggestions = suggestions.filter(x => !colVals.includes(x));
-        //console.log(suggestions) //DEBUG
-
-        //compare to group
-        let groupVals = [];
+        //add group vals
         let groupCoords = getGroup(row, col)
-        //console.log(groupCoords) //DEBUG
         for (let i=0; i<groupCoords.length; i++){
-                let x = groupCoords[i][0]
-                let y = groupCoords[i][1]
-                let groupCell = "#cell_" + x + "_" + y
-                groupVals.push($(groupCell).html())
+            let x = groupCoords[i][0]
+            let y = groupCoords[i][1]
+            let groupCell = "#cell_" + x + "_" + y
+            let cellVal = $(groupCell).html()
+            if(cellVal != ""){
+                neighboursSet.add(cellVal)
+            }
         }
-        suggestions = suggestions.filter(x => !groupVals.includes(x));
-        console.log("Row:" + row + ", Col: " + col + suggestions) //DEBUG
-        //console.log(suggestions.length) //DEBUG
-
+        console.log(valuesSet)
+        console.log(neighboursSet)
+        
+        let mySet = new Set([...valuesSet].filter(elem => !neighboursSet.has(elem)))
+        console.log(mySet)
+        let suggestions = Array.from(mySet)
+        console.log(suggestions)
         return suggestions
+
+        //https://blog.greenroots.info/everything-you-need-to-know-about-javascript-set
+        //https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array
     }
 }
