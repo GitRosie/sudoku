@@ -206,16 +206,18 @@ class Game {
                 neighboursSet.add(cellVal)
             }
         }
-        console.log(valuesSet)
-        console.log(neighboursSet)
+        //console.log(valuesSet)
+        //console.log(neighboursSet)
         
-        let mySet = new Set([...valuesSet].filter(elem => !neighboursSet.has(elem)))
-        console.log(mySet)
-        let suggestions = Array.from(mySet)
-        console.log(suggestions)
-        return suggestions
-
         //https://blog.greenroots.info/everything-you-need-to-know-about-javascript-set
         //https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array
+        let mySet = new Set([...valuesSet].filter(elem => !neighboursSet.has(elem)))
+        //console.log(mySet)
+        let setToArray = [...mySet];
+        //convert array elements from strings to numers
+        let suggestions = setToArray.map(i=>Number(i))
+        //console.log(suggestions)
+
+        return suggestions
     }
 }
