@@ -175,49 +175,45 @@ class Game {
     }
 
     suggest(row, col){
-        //The values that can appear in any row, col or group
-        const valuesSet = new Set(["1","2","2","3","4","5","6","7","8","9"]);
-        let neighboursSet = new Set();
+                //The values that can appear in any row, col or group
+                const valuesSet = new Set([1,2,3,4,5,6,7,8,9]);
+                let neighboursSet = new Set();
+                
+                //add row values
+                for (let i=0; i<9; i++){
+                    let cellVal = this.board[row][i]
+                    if(cellVal != "" && cellVal != null){
+                        neighboursSet.add(cellVal)
+                    }
+                }
+                //add col vals
+                for (let i=0; i<9; i++){
+                    let cellVal = this.board[i][col]
+                    if(cellVal != "" && cellVal != null){
+                        neighboursSet.add(cellVal)
+                    }
+                }
+                //add group vals
+                let groupCoords = getGroup(row, col)
+                for (let i=0; i<groupCoords.length; i++){
+                    let x = groupCoords[i][0]
+                    let y = groupCoords[i][1]
+                    let cellVal = this.board[x][y]
+                    if(cellVal != "" && cellVal != null){
+                        neighboursSet.add(cellVal)
+                    }
+                }
+                //console.log(valuesSet)
+                //console.log(neighboursSet)
+                
+                //https://blog.greenroots.info/everything-you-need-to-know-about-javascript-set
+                //https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array
+                let mySet = new Set([...valuesSet].filter(elem => !neighboursSet.has(elem)))
+                console.log(mySet)
+                let suggestions = [...mySet];
         
-        //add row values
-        for (let i=0; i<9; i++){
-            let rowCell = "#cell_" + row + "_" + i
-            let cellVal = $(rowCell).html()
-            if(cellVal != ""){
-                neighboursSet.add(cellVal)
-            }
-        }
-        //add col vals
-        for (let i=0; i<9; i++){
-            let colCell = "#cell_" + i + "_" + col
-            let cellVal = $(colCell).html()
-            if(cellVal != ""){
-                neighboursSet.add(cellVal)
-            }
-        }
-        //add group vals
-        let groupCoords = getGroup(row, col)
-        for (let i=0; i<groupCoords.length; i++){
-            let x = groupCoords[i][0]
-            let y = groupCoords[i][1]
-            let groupCell = "#cell_" + x + "_" + y
-            let cellVal = $(groupCell).html()
-            if(cellVal != ""){
-                neighboursSet.add(cellVal)
-            }
-        }
-        //console.log(valuesSet)
-        //console.log(neighboursSet)
+                //console.log(suggestions)
         
-        //https://blog.greenroots.info/everything-you-need-to-know-about-javascript-set
-        //https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array
-        let mySet = new Set([...valuesSet].filter(elem => !neighboursSet.has(elem)))
-        //console.log(mySet)
-        let setToArray = [...mySet];
-        //convert array elements from strings to numers
-        let suggestions = setToArray.map(i=>Number(i))
-        //console.log(suggestions)
-
-        return suggestions
+                return suggestions
     }
 }

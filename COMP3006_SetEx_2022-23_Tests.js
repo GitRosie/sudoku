@@ -428,7 +428,6 @@ suite("JavaScript tests", function() {
         game.board[4][1] = null;
         game.board[1][8] = null;
         game.board[2][2] = null;
-        game.displayGame()
 
         let suggestions = game.suggest(1,1);
         chai.assert.lengthOf(suggestions, 2, "Should only be two suggestions");
